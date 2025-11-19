@@ -54,6 +54,9 @@ const isOriginAllowed = (origin) => {
   // Check exact matches
   if (allowedOrigins.includes(origin)) return true;
   
+  // Allow Vercel deployment URLs (*.vercel.app)
+  if (/^https:\/\/.*\.vercel\.app$/.test(origin)) return true;
+  
   // Allow any local network IP (192.168.x.x, 10.x.x.x, 172.16-31.x.x) with ports 5173 or 5001
   const lanPattern = /^https?:\/\/(192\.168\.\d+\.\d+|10\.\d+\.\d+\.\d+|172\.(1[6-9]|2[0-9]|3[0-1])\.\d+\.\d+):(5173|5001|3001)$/;
   if (lanPattern.test(origin)) return true;
@@ -194,30 +197,39 @@ if (process.env.NODE_ENV !== 'production') {
 // Align default port with frontend expectations (frontend hardcodes 3001)
 const PORT = process.env.PORT || 3001;
 
-// Test database connection before starting server
-testConnection().then((connected) => {
-  if (connected) {
-    console.log('✅ Database connected successfully');
-  } else {
-    console.log('⚠️ Database connection failed, but starting server anyway for development');
-  }
-  
-  server.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT}`);
-    console.log(`📱 Socket.IO server initialized`);
-    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`🔗 Frontend URL(s): ${allowedOrigins.join(', ')}`);
-  });
-}).catch((error) => {
-  console.error('❌ Database connection error:', error.message);
-  console.log('⚠️ Starting server anyway for development');
-  
-  server.listen(PORT, () => {
-    console.log(`🚀 Server running on port ${PORT} (without database)`);
-    console.log(`📱 Socket.IO server initialized`);
-    console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
-    console.log(`🔗 Frontend URL(s): ${allowedOrigins.join(', ')}`);
-  });
-});
+// For Vercel serverless deployment, export the app
+// Check if running in Vercel environment
+const isVercel = process.env.VERCEL === '1' || process.env.NOW_REGION;
 
+if (!isVercel) {
+  // Local/traditional server mode
+  // Test database connection before starting server
+  testConnection().then((connected) => {
+    if (connected) {
+      console.log('✅ Database connected successfully');
+    } else {
+      console.log('⚠️ Database connection failed, but starting server anyway for development');
+    }
+    
+    server.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT}`);
+      console.log(`📱 Socket.IO server initialized`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`🔗 Frontend URL(s): ${allowedOrigins.join(', ')}`);
+    });
+  }).catch((error) => {
+    console.error('❌ Database connection error:', error.message);
+    console.log('⚠️ Starting server anyway for development');
+    
+    server.listen(PORT, () => {
+      console.log(`🚀 Server running on port ${PORT} (without database)`);
+      console.log(`📱 Socket.IO server initialized`);
+      console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+      console.log(`🔗 Frontend URL(s): ${allowedOrigins.join(', ')}`);
+    });
+  });
+}
+
+// Export for Vercel serverless
+export default app;
 export { io };

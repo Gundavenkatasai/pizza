@@ -2,31 +2,22 @@
   "version": 2,
   "builds": [
     {
-      "src": "project/server/index.js",
-      "use": "@vercel/node",
-      "config": {
-        "includeFiles": [
-          "project/dist/**",
-          "admin-dashboard/dist/**"
-        ]
-      }
+      "src": "api/index.js",
+      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "project/server/index.js"
+      "dest": "/api/index.js"
     },
     {
       "src": "/admin/(.*)",
-      "dest": "project/server/index.js"
+      "dest": "/api/index.js"
     },
     {
       "src": "/(.*)",
-      "dest": "project/server/index.js"
+      "dest": "/api/index.js"
     }
-  ],
-  "env": {
-    "NODE_ENV": "production"
-  }
+  ]
 }
