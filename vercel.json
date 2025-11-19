@@ -1,23 +1,15 @@
 {
-  "version": 2,
-  "builds": [
-    {
-      "src": "project/server/index.js",
-      "use": "@vercel/node"
+  "buildCommand": "npm run build",
+  "outputDirectory": "project/dist",
+  "installCommand": "npm install && cd project/server && npm install",
+  "functions": {
+    "project/server/*.js": {
+      "includeFiles": "{project/dist/**,admin-dashboard/dist/**}"
     }
-  ],
-  "routes": [
-    {
-      "src": "/api/(.*)",
-      "dest": "project/server/index.js"
-    },
-    {
-      "src": "/admin/(.*)",
-      "dest": "project/server/index.js"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "project/server/index.js"
-    }
+  },
+  "rewrites": [
+    { "source": "/api/:path*", "destination": "/project/server/index.js" },
+    { "source": "/admin/:path*", "destination": "/project/server/index.js" },
+    { "source": "/:path*", "destination": "/project/server/index.js" }
   ]
 }
