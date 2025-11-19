@@ -16,6 +16,7 @@ dist/
 build/
 project/dist/
 admin-dashboard/dist/
+public/
 
 # Logs
 logs/

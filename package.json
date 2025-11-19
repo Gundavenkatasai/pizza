@@ -15,7 +15,8 @@
     "build:frontend": "cd project && npm run build",
     "build:admin": "cd admin-dashboard && npm run build",
     "build:server": "cd project/server && npm install --omit=dev",
-    "build": "npm run build:frontend && npm run build:admin && npm run build:server",
+    "build:copy": "node scripts/copy-builds.js",
+    "build": "npm run build:frontend && npm run build:admin && npm run build:server && npm run build:copy",
     "start": "node project/server/index.js",
     "vercel-build": "npm run build"
   },

@@ -1,15 +1,26 @@
 {
-  "buildCommand": "npm run build",
-  "outputDirectory": "project/dist",
-  "installCommand": "npm install && cd project/server && npm install",
-  "functions": {
-    "project/server/*.js": {
-      "includeFiles": "{project/dist/**,admin-dashboard/dist/**}"
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "public"
+      }
     }
-  },
-  "rewrites": [
-    { "source": "/api/:path*", "destination": "/project/server/index.js" },
-    { "source": "/admin/:path*", "destination": "/project/server/index.js" },
-    { "source": "/:path*", "destination": "/project/server/index.js" }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/admin/(.*)",
+      "dest": "/api/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/api/index.js"
+    }
   ]
 }
