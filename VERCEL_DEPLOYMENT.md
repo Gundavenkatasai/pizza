@@ -1,7 +1,9 @@
 # Vercel Deployment Guide - Pizza Vamsi Platform
 
 ## Overview
+
 This project is now unified into a single deployment with:
+
 - **Main Website**: Served at root `/`
 - **Admin Dashboard**: Served at `/admin`
 - **Backend API**: Served at `/api/*`
@@ -36,6 +38,7 @@ FRONTEND_URL=https://your-vercel-domain.vercel.app
 ### 2. Update .gitignore
 
 Already configured to ignore:
+
 - `.env` files
 - `node_modules/`
 - `dist/` and `build/`
@@ -44,6 +47,7 @@ Already configured to ignore:
 ### 3. Repository Setup
 
 #### Option A: New Repository (Recommended)
+
 ```powershell
 # In your project root
 git init
@@ -55,6 +59,7 @@ git push -u origin main
 ```
 
 #### Option B: Existing Repository
+
 ```powershell
 git add .
 git commit -m "feat: Unified server structure for Vercel deployment"
@@ -70,6 +75,7 @@ git push
 3. **Click "Add New Project"**
 4. **Import your repository**
 5. **Configure project:**
+
    - Framework Preset: `Other`
    - Root Directory: `./` (keep as is)
    - Build Command: `npm run build`
@@ -112,6 +118,7 @@ vercel --prod
 ### 1. Test Your Deployment
 
 Visit your Vercel URL:
+
 - **Main Site**: `https://your-domain.vercel.app/`
 - **Admin**: `https://your-domain.vercel.app/admin`
 - **API Health**: `https://your-domain.vercel.app/api/health`
@@ -119,12 +126,14 @@ Visit your Vercel URL:
 ### 2. Update CORS Settings
 
 The server is configured to allow your Vercel domain automatically. The dynamic CORS validator accepts:
+
 - Your production domain
 - Local development IPs
 
 ### 3. Update MongoDB Network Access
 
 In MongoDB Atlas:
+
 1. Go to Network Access
 2. Add `0.0.0.0/0` (allow from anywhere) for Vercel
    - Or whitelist Vercel's IP ranges if you prefer
@@ -159,15 +168,18 @@ Vercel Deployment
 When you deploy, Vercel will:
 
 1. **Install dependencies**: `npm run install:all`
+
    - Installs root dependencies
    - Installs project dependencies
    - Installs admin-dashboard dependencies
    - Installs server dependencies
 
 2. **Build frontend**: `npm run build:frontend`
+
    - Compiles React app to `project/dist`
 
 3. **Build admin**: `npm run build:admin`
+
    - Compiles admin React app to `admin-dashboard/dist`
 
 4. **Start server**: `node project/server/index.js`
@@ -180,6 +192,7 @@ When you deploy, Vercel will:
 **Check build logs in Vercel dashboard**
 
 Common issues:
+
 - Missing environment variables → Add in Vercel settings
 - TypeScript errors → Fix in code before committing
 - Dependency issues → Check package.json versions
@@ -217,6 +230,7 @@ Common issues:
 ## Rolling Back
 
 If deployment has issues:
+
 ```powershell
 # Via CLI
 vercel rollback
@@ -254,6 +268,7 @@ npm start
 ## Support
 
 If you encounter issues:
+
 1. Check Vercel build logs
 2. Check Vercel function logs (Runtime Logs)
 3. Verify all environment variables are set

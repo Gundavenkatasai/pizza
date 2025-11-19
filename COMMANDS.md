@@ -57,6 +57,7 @@ npm run build:server
 ## 🚢 Deployment
 
 ### Via Vercel Dashboard
+
 1. Push to GitHub: `git push origin main`
 2. Go to [vercel.com/new](https://vercel.com/new)
 3. Import your repository
@@ -64,6 +65,7 @@ npm run build:server
 5. Deploy!
 
 ### Via Vercel CLI
+
 ```powershell
 # Install CLI
 npm i -g vercel
@@ -134,11 +136,13 @@ git push
 ## 🌐 Environment URLs
 
 ### Development
+
 - Frontend: `http://localhost:5173`
 - Admin: `http://localhost:5001`
 - Backend: `http://localhost:3001`
 
 ### Production (after deploy)
+
 - All apps: `https://your-app.vercel.app`
 - Admin: `https://your-app.vercel.app/admin`
 - API: `https://your-app.vercel.app/api/health`
@@ -154,11 +158,13 @@ git push
 ## 🆘 Common Issues
 
 ### Port in use
+
 ```powershell
 npx kill-port 3001 5173 5001
 ```
 
 ### Dependencies out of sync
+
 ```powershell
 rm -rf node_modules
 rm -rf project/node_modules
@@ -168,6 +174,7 @@ npm run install:all
 ```
 
 ### Build fails
+
 ```powershell
 # Check for TypeScript errors
 cd project && npm run build
@@ -175,11 +182,13 @@ cd ../admin-dashboard && npm run build
 ```
 
 ### MongoDB connection fails
+
 - Check `MONGODB_URI` in .env
 - Verify MongoDB Atlas network access allows your IP
 - Test connection string in MongoDB Compass
 
 ### Vercel deployment fails
+
 - Check build logs in Vercel dashboard
 - Verify all environment variables are set
 - Test build locally first: `npm run build`
@@ -201,6 +210,7 @@ cat .gitignore
 ## 📊 Monitoring
 
 ### Local Logs
+
 ```powershell
 # Backend logs
 cd project && npm run dev:backend
@@ -210,6 +220,7 @@ npm run dev  # Shows all three servers
 ```
 
 ### Production Logs
+
 - Vercel Dashboard → Your Project → Logs
 - Or use Vercel CLI: `vercel logs`
 

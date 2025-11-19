@@ -16,12 +16,14 @@ Complete this checklist before deploying to Vercel.
 Prepare these values to add in Vercel:
 
 ### Required
+
 - [ ] `NODE_ENV=production`
 - [ ] `MONGODB_URI` - MongoDB Atlas connection string
 - [ ] `JWT_SECRET` - Strong random secret (64+ characters)
 - [ ] `FRONTEND_URL` - Will be your Vercel domain (add after first deploy)
 
 ### Optional but Recommended
+
 - [ ] `EMAIL_USER` - Gmail or SMTP email
 - [ ] `EMAIL_PASS` - App-specific password
 - [ ] `ADMIN_EMAIL` - Admin notification email
@@ -77,6 +79,7 @@ npm start
 ## ✅ Deployment Steps
 
 ### 1. Push to GitHub
+
 ```powershell
 git add .
 git commit -m "Ready for Vercel deployment"
@@ -84,6 +87,7 @@ git push origin main
 ```
 
 ### 2. Import to Vercel
+
 - [ ] Go to [vercel.com/new](https://vercel.com/new)
 - [ ] Click "Import Project"
 - [ ] Select your GitHub repository
@@ -94,16 +98,19 @@ git push origin main
 - [ ] Output Directory: (leave empty)
 
 ### 3. Add Environment Variables
+
 - [ ] Click "Environment Variables"
 - [ ] Add all required variables from list above
 - [ ] Apply to: Production, Preview, Development
 
 ### 4. Deploy
+
 - [ ] Click "Deploy"
 - [ ] Wait for build to complete (5-10 minutes)
 - [ ] Note your deployment URL
 
 ### 5. Post-Deployment
+
 - [ ] Update `FRONTEND_URL` in Vercel environment variables to your deployment URL
 - [ ] Redeploy (Vercel → Deployments → ... → Redeploy)
 - [ ] Test all features on production URL
@@ -137,23 +144,27 @@ Test these on your live Vercel URL:
 ## 🆘 Troubleshooting
 
 ### Build Fails
+
 1. Check Vercel build logs
 2. Verify all dependencies in package.json
 3. Test build locally: `npm run build`
 4. Check for TypeScript errors
 
 ### 500 Server Error
+
 1. Check Vercel function logs (Runtime Logs)
 2. Verify `MONGODB_URI` is correct
 3. Check MongoDB network access allows 0.0.0.0/0
 4. Verify `JWT_SECRET` is set
 
 ### 404 Errors
+
 1. Check vercel.json routes configuration
 2. Verify build outputs exist (dist folders)
 3. Check server routing in project/server/index.js
 
 ### CORS Errors
+
 1. Update `FRONTEND_URL` to include Vercel domain
 2. Check CORS configuration in server/index.js
 3. Redeploy after env var changes

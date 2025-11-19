@@ -5,6 +5,7 @@ A full-stack pizza delivery platform with customer ordering website and admin da
 ## 🚀 Live Demo
 
 **Production URL**: `https://your-vercel-domain.vercel.app`
+
 - Main Website: `/`
 - Admin Dashboard: `/admin`
 - API: `/api/*`
@@ -12,6 +13,7 @@ A full-stack pizza delivery platform with customer ordering website and admin da
 ## ✨ Features
 
 ### Customer Website
+
 - 🛒 Browse menu and add items to cart
 - 💳 Secure checkout with Razorpay integration
 - 📱 Real-time order tracking
@@ -19,6 +21,7 @@ A full-stack pizza delivery platform with customer ordering website and admin da
 - 📧 Email notifications for order updates
 
 ### Admin Dashboard
+
 - 📊 Real-time order management
 - 👥 Customer analytics
 - 📦 Order status updates
@@ -26,6 +29,7 @@ A full-stack pizza delivery platform with customer ordering website and admin da
 - 🔄 Live synchronization with customer app
 
 ### Backend API
+
 - 🔐 JWT authentication
 - 🗄️ MongoDB database
 - 🔌 Socket.IO for real-time updates
@@ -35,6 +39,7 @@ A full-stack pizza delivery platform with customer ordering website and admin da
 ## 🏗️ Tech Stack
 
 **Frontend**
+
 - React 18 + TypeScript
 - React Router v6
 - Tailwind CSS
@@ -43,6 +48,7 @@ A full-stack pizza delivery platform with customer ordering website and admin da
 - Axios
 
 **Backend**
+
 - Node.js + Express
 - MongoDB + Mongoose
 - Socket.IO
@@ -51,6 +57,7 @@ A full-stack pizza delivery platform with customer ordering website and admin da
 - Nodemailer
 
 **Deployment**
+
 - Vercel (Unified deployment)
 - MongoDB Atlas
 
@@ -78,6 +85,7 @@ pizza-vamsi/
 ## 🛠️ Local Development
 
 ### Prerequisites
+
 - Node.js >= 18.0.0
 - MongoDB Atlas account (or local MongoDB)
 - Git
@@ -85,17 +93,20 @@ pizza-vamsi/
 ### Installation
 
 1. **Clone the repository**
+
 ```powershell
 git clone <your-repo-url>
 cd pizza-vamsi
 ```
 
 2. **Install all dependencies**
+
 ```powershell
 npm run install:all
 ```
 
 3. **Set up environment variables**
+
 ```powershell
 # Copy the example file
 cp .env.example .env
@@ -104,6 +115,7 @@ cp .env.example .env
 ```
 
 4. **Start development servers**
+
 ```powershell
 # Start all three servers (backend, frontend, admin)
 npm run dev
@@ -115,6 +127,7 @@ npm run dev:admin      # Admin on :5001
 ```
 
 ### Development URLs
+
 - Main Website: `http://localhost:5173`
 - Admin Dashboard: `http://localhost:5001`
 - Backend API: `http://localhost:3001`
@@ -128,6 +141,7 @@ See [VERCEL_DEPLOYMENT.md](./VERCEL_DEPLOYMENT.md) for detailed instructions.
 **Quick Steps:**
 
 1. **Push to GitHub**
+
 ```powershell
 git add .
 git commit -m "Ready for deployment"
@@ -135,13 +149,15 @@ git push
 ```
 
 2. **Deploy on Vercel**
+
 - Go to [vercel.com](https://vercel.com)
 - Import your GitHub repository
 - Configure environment variables
 - Deploy!
 
 3. **Set Environment Variables in Vercel**
-Required variables (see `.env.example`):
+   Required variables (see `.env.example`):
+
 - `NODE_ENV=production`
 - `MONGODB_URI`
 - `JWT_SECRET`
@@ -163,11 +179,13 @@ Required variables (see `.env.example`):
 See `.env.example` for all available variables.
 
 ### Required
+
 - `MONGODB_URI` - MongoDB connection string
 - `JWT_SECRET` - Secret for JWT tokens
 - `FRONTEND_URL` - Your app's URL
 
 ### Optional
+
 - `EMAIL_USER`, `EMAIL_PASS` - For email notifications
 - `RAZORPAY_KEY_ID`, `RAZORPAY_KEY_SECRET` - For payments
 - `PORT` - Server port (default: 3001)

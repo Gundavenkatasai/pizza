@@ -5,13 +5,15 @@
 Your project has been restructured from **3 separate servers** into **1 unified deployment** ready for Vercel.
 
 ## Before (3 Servers)
+
 ```
 ❌ Backend API     → localhost:3001 (separate deployment)
-❌ Main Frontend   → localhost:5173 (separate deployment)  
+❌ Main Frontend   → localhost:5173 (separate deployment)
 ❌ Admin Dashboard → localhost:5001 (separate deployment)
 ```
 
 ## After (1 Unified Server)
+
 ```
 ✅ Single Deployment → https://your-app.vercel.app
    ├── /           → Main website
@@ -24,25 +26,30 @@ Your project has been restructured from **3 separate servers** into **1 unified 
 ### New Files Created
 
 1. **`vercel.json`** - Vercel deployment configuration
+
    - Routes all traffic to unified server
    - Configures build settings
 
 2. **`README.md`** - Project documentation
+
    - Setup instructions
    - Tech stack overview
    - Development guide
 
 3. **`VERCEL_DEPLOYMENT.md`** - Deployment guide
+
    - Step-by-step Vercel deployment
    - Environment variables list
    - Troubleshooting guide
 
 4. **`DEPLOYMENT_CHECKLIST.md`** - Pre-deployment checklist
+
    - Complete checklist before deploying
    - Testing procedures
    - Common issues
 
 5. **`.env.example`** - Environment template
+
    - All required variables
    - Documentation for each variable
 
@@ -53,11 +60,13 @@ Your project has been restructured from **3 separate servers** into **1 unified 
 ### Modified Files
 
 1. **`package.json` (root)**
+
    - Added unified build scripts
    - Added all backend dependencies
    - Added deployment scripts for Vercel
 
 2. **`project/server/index.js`**
+
    - Added static file serving for production
    - Serves main app at `/`
    - Serves admin at `/admin`
@@ -65,11 +74,13 @@ Your project has been restructured from **3 separate servers** into **1 unified 
    - Added path imports for ES modules
 
 3. **`project/vite.config.ts`**
+
    - Added build configuration
    - Set base path to `/`
    - Configured output directory
 
 4. **`admin-dashboard/vite.config.ts`**
+
    - Set base path to `/admin/`
    - Added build configuration
    - Added API proxy for development
@@ -82,6 +93,7 @@ Your project has been restructured from **3 separate servers** into **1 unified 
 ## Architecture Changes
 
 ### Development (Unchanged)
+
 ```
 ┌─────────────────┐
 │  Backend :3001  │ ← Express + MongoDB
@@ -99,6 +111,7 @@ Your project has been restructured from **3 separate servers** into **1 unified 
 ```
 
 ### Production (New)
+
 ```
 ┌────────────────────────────────────┐
 │   Vercel - Single Deployment       │
@@ -120,7 +133,9 @@ Your project has been restructured from **3 separate servers** into **1 unified 
 ## How It Works
 
 ### Build Process
+
 1. `npm run build` runs three builds:
+
    - Frontend → `project/dist/`
    - Admin → `admin-dashboard/dist/`
    - Server → installs production dependencies
@@ -135,20 +150,23 @@ Your project has been restructured from **3 separate servers** into **1 unified 
 ### Request Routing
 
 **API Requests** (`/api/*`)
+
 ```
 Request → Express Routes → Database → Response
 ```
 
 **Admin Dashboard** (`/admin` or `/admin/*`)
+
 ```
-Request → Express static middleware 
+Request → Express static middleware
        → Serves admin-dashboard/dist/index.html
        → React Router handles client-side routing
 ```
 
 **Main Website** (`/` or any other path)
+
 ```
-Request → Express static middleware 
+Request → Express static middleware
        → Serves project/dist/index.html
        → React Router handles client-side routing
 ```
@@ -156,6 +174,7 @@ Request → Express static middleware
 ## Environment Variables
 
 ### Required in Vercel
+
 ```env
 NODE_ENV=production
 MONGODB_URI=mongodb+srv://...
@@ -164,6 +183,7 @@ FRONTEND_URL=https://your-app.vercel.app
 ```
 
 ### Optional
+
 ```env
 EMAIL_USER=your-email@gmail.com
 EMAIL_PASS=app-password

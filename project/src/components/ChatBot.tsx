@@ -22,10 +22,10 @@ const ChatBot: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const GEMINI_API_KEY = 'AIzaSyCGuYwqU0jn1KzkRLGkJ4pOxWj0C2pSP7Y';
+  const GEMINI_API_KEY = import.meta.env.VITE_GEMINI_API_KEY || '';
   const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`;
 
-  const WEATHER_API_KEY = 'YOUR_OPENWEATHERMAP_API_KEY'; // Placeholder; guarded below
+  const WEATHER_API_KEY = import.meta.env.VITE_WEATHER_API_KEY || '';
   const WEATHER_CITY = 'Hyderabad'; // Or use user's city if available
 
   const MOODS = [
@@ -53,8 +53,8 @@ const ChatBot: React.FC = () => {
   // Fetch weather on mount
   useEffect(() => {
     async function fetchWeather() {
-      // Skip fetch if using placeholder key to avoid 401 spam
-      if (!WEATHER_API_KEY || WEATHER_API_KEY === 'YOUR_OPENWEATHERMAP_API_KEY') {
+      // Skip fetch if no API key configured
+      if (!WEATHER_API_KEY) {
         setWeather('clear');
         return;
       }
