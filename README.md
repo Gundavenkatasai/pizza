@@ -1,4 +1,4 @@
-# 🍕 Pizza Vamsi - Unified Platform
+# 🍕 Pizza  - Unified Platform
 
 A full-stack pizza delivery platform with customer ordering website and admin dashboard, deployed as a single unified application.
 
@@ -211,4 +211,4 @@ MIT License - feel free to use this project for your own purposes.
 
 ---
 
-**Made with ❤️ by Vamsi**
+**Made with ❤️ by Venkatasai**
