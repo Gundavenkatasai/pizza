@@ -1,26 +1,23 @@
 {
   "version": 2,
-  "buildCommand": "npm run build",
-  "outputDirectory": "project/dist",
-  "installCommand": "npm install && cd project/server && npm install",
-  "functions": {
-    "project/server/index.js": {
-      "memory": 1024,
-      "maxDuration": 10
+  "builds": [
+    {
+      "src": "project/server/index.js",
+      "use": "@vercel/node"
     }
-  },
-  "rewrites": [
+  ],
+  "routes": [
     {
-      "source": "/api/:path*",
-      "destination": "/project/server/index.js"
+      "src": "/api/(.*)",
+      "dest": "project/server/index.js"
     },
     {
-      "source": "/admin/:path*",
-      "destination": "/project/server/index.js"
+      "src": "/admin/(.*)",
+      "dest": "project/server/index.js"
     },
     {
-      "source": "/:path*",
-      "destination": "/project/server/index.js"
+      "src": "/(.*)",
+      "dest": "project/server/index.js"
     }
   ]
 }

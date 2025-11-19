@@ -1,0 +1,10 @@
+# Don't ignore these (they're needed)
+!project/dist
+!admin-dashboard/dist
+!project/server
+
+# Ignore these
+.env.local
+.env.*.local
+*.log
+.DS_Store
